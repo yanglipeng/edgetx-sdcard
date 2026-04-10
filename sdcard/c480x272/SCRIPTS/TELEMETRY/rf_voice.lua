@@ -105,8 +105,8 @@ local function onTelemReceive(packet)
         end
     end
     
-    -- Battery sensor (0x02)
-    if frameId == 2 then
+    -- Battery sensor (0x08)
+    if frameId == 8 then
         local voltage = (packet[3] * 256 + packet[4]) / 10
         if voltage > 0 and voltage < 100 then
             -- Check for low voltage
@@ -118,8 +118,8 @@ local function onTelemReceive(packet)
         end
     end
     
-    -- GPS frame (0x02 + extended)
-    if frameId == 86 then  -- 0x56 GPS
+    -- GPS frame (0x02)
+    if frameId == 2 then  -- 0x02 GPS
         local sats = packet[10]
         if sats and sats >= 5 then
             -- GPS fixed
